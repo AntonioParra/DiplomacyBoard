@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/PanelPais.gd" type="Script" id=1]
+[ext_resource path="res://assets/ejercito.png" type="Texture" id=2]
+[ext_resource path="res://assets/control.png" type="Texture" id=3]
+[ext_resource path="res://assets/flota.png" type="Texture" id=4]
+
+[node name="Panel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Pais" type="Label" parent="VBoxContainer"]
+margin_right = 229.0
+margin_bottom = 14.0
+
+[node name="Unidades" type="Label" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 229.0
+margin_bottom = 32.0
+
+[node name="Centros" type="Label" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 229.0
+margin_bottom = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 54.0
+margin_right = 229.0
+margin_bottom = 118.0
+size_flags_horizontal = 3
+
+[node name="ButArmy" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_right = 73.0
+margin_bottom = 64.0
+rect_clip_content = true
+size_flags_horizontal = 3
+texture_normal = ExtResource( 2 )
+
+[node name="ButFleet" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 77.0
+margin_right = 151.0
+margin_bottom = 64.0
+rect_clip_content = true
+size_flags_horizontal = 3
+texture_normal = ExtResource( 4 )
+
+[node name="ButControl" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+margin_left = 155.0
+margin_right = 229.0
+margin_bottom = 64.0
+rect_clip_content = true
+size_flags_horizontal = 3
+texture_normal = ExtResource( 3 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 122.0
+margin_right = 229.0
+margin_bottom = 142.0
+
+[node name="ButMovimiento" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 89.0
+margin_bottom = 20.0
+text = "Movimiento"
+
+[node name="ButApoyo" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 93.0
+margin_right = 145.0
+margin_bottom = 20.0
+text = "Apoyo"
+
+[node name="ButTransporte" type="Button" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 149.0
+margin_right = 229.0
+margin_bottom = 20.0
+text = "Transporte"
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/ButArmy" to="." method="_on_ButArmy_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/ButFleet" to="." method="_on_ButFleet_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/ButControl" to="." method="_on_ButControl_button_down"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ButMovimiento" to="." method="_on_ButMovimiento_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ButApoyo" to="." method="_on_ButApoyo_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/ButTransporte" to="." method="_on_ButTransporte_pressed"]

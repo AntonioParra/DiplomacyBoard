@@ -1,0 +1,178 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/PanelPais.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Mapa.png" type="Texture" id=2]
+[ext_resource path="res://mapa/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Main.gd" type="Script" id=5]
+
+[node name="App" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="ViewportImage" type="Viewport" parent="."]
+size = Vector2( 2304, 1930 )
+render_target_v_flip = true
+render_target_update_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UITop" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+margin_bottom = 137.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UITop"]
+anchor_right = 1.0
+margin_top = 1.0
+margin_bottom = 161.0
+size_flags_horizontal = 3
+
+[node name="PanelAustria" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 142.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 1
+
+[node name="PanelInglaterra" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 146.0
+margin_right = 289.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 2
+
+[node name="PanelFrancia" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 293.0
+margin_right = 436.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 3
+
+[node name="PanelAlemania" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 440.0
+margin_right = 583.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 4
+
+[node name="PanelItalia" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 587.0
+margin_right = 730.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 5
+
+[node name="PanelRusia" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 734.0
+margin_right = 877.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 6
+
+[node name="PanelTurquia" parent="CanvasLayer/UITop/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 881.0
+margin_right = 1024.0
+margin_bottom = 160.0
+size_flags_horizontal = 3
+pais = 7
+
+[node name="UIBottom" type="Control" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIBottom"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -68.0
+
+[node name="ButtonLoad" type="Button" parent="CanvasLayer/UIBottom/VBoxContainer"]
+margin_right = 86.0
+margin_bottom = 20.0
+text = "Cargar"
+
+[node name="ButtonSave" type="Button" parent="CanvasLayer/UIBottom/VBoxContainer"]
+margin_top = 24.0
+margin_right = 86.0
+margin_bottom = 44.0
+text = "Guardar"
+
+[node name="ButtonImage" type="Button" parent="CanvasLayer/UIBottom/VBoxContainer"]
+margin_top = 48.0
+margin_right = 86.0
+margin_bottom = 68.0
+text = "Captura"
+
+[node name="FileDialogSave" type="FileDialog" parent="CanvasLayer"]
+margin_right = 315.0
+margin_bottom = 130.0
+window_title = "Guardar"
+resizable = true
+access = 2
+filters = PoolStringArray( "*.map" )
+
+[node name="FileDialogLoad" type="FileDialog" parent="CanvasLayer"]
+margin_right = 315.0
+margin_bottom = 130.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+filters = PoolStringArray( "*.map" )
+
+[node name="FileDialogImage" type="FileDialog" parent="CanvasLayer"]
+margin_top = 600.0
+margin_right = 315.0
+margin_bottom = 730.0
+window_title = "Guardar Imagen"
+resizable = true
+access = 2
+filters = PoolStringArray( "*.png" )
+
+[node name="Mapa" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Mapa"]
+texture = ExtResource( 2 )
+
+[node name="Fichas" type="Node2D" parent="Mapa"]
+
+[node name="Flechas" type="Node2D" parent="Mapa"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 4 )
+
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelAustria" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelAustria" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelInglaterra" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelInglaterra" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelFrancia" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelFrancia" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelAlemania" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelAlemania" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelItalia" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelItalia" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelRusia" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelRusia" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="drag_preview_required" from="CanvasLayer/UITop/HBoxContainer/PanelTurquia" to="." method="_on_drag_preview_required"]
+[connection signal="modo_flecha_required" from="CanvasLayer/UITop/HBoxContainer/PanelTurquia" to="." method="_on_Panel_modo_flecha_required"]
+[connection signal="pressed" from="CanvasLayer/UIBottom/VBoxContainer/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIBottom/VBoxContainer/ButtonSave" to="." method="_on_ButtonSave_pressed"]
+[connection signal="pressed" from="CanvasLayer/UIBottom/VBoxContainer/ButtonImage" to="." method="_on_ButtonImage_pressed"]
+[connection signal="file_selected" from="CanvasLayer/FileDialogSave" to="." method="_on_FileDialog_file_selected"]
+[connection signal="file_selected" from="CanvasLayer/FileDialogLoad" to="." method="_on_FileDialogLoad_file_selected"]
+[connection signal="file_selected" from="CanvasLayer/FileDialogImage" to="." method="_on_FileDialogImage_file_selected"]
